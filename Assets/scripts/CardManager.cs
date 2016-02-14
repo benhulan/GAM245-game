@@ -1,0 +1,178 @@
+﻿using UnityEngine;
+using System.Collections;
+using System;
+using System.Collections.Generic;
+
+
+public class CardManager : MonoBehaviour {
+
+	[SerializeField] private GameObject m_waterCard = null;
+    [SerializeField] private GameObject m_fireCard = null;
+    [SerializeField] private GameObject m_airCard = null;
+    [SerializeField] private GameObject m_energyCard = null;
+    [SerializeField] private GameObject m_earthCard = null;
+
+	[SerializeField] private CardMatchInfo[] m_possibleMatches = null;
+    
+     //string m_resultingCard = gameObject.name;
+
+    /// <summary>
+    /// The cards that are currently on the pile.
+    /// </summary>
+    private List<GameObject> m_currentlySelectedCards = new List<GameObject>();
+
+    /// <summary>
+    /// Checks for debug input commands.
+    /// </summary>
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            CheckMatches();
+        }
+
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            AddToPile(m_waterCard);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            AddToPile(m_fireCard);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            AddToPile(m_airCard);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            AddToPile(m_earthCard);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            AddToPile(m_energyCard);
+        }
+    }
+
+    /// <summary>
+    /// Adds a card to the pile of currently selected cards.
+    /// </summary>
+    /// <param name="card">The card to add to the pile.</param>
+    public void AddToPile(GameObject card)
+    {
+        if(m_currentlySelectedCards.Count >= 2)
+        {
+            // already full
+            Debug.Log("Already full.");
+            return;
+        }
+
+        m_currentlySelectedCards.Add(card);
+
+        // TODO: Visually move the card.
+    }
+
+    /// <summary>
+    /// Checks if two cards are on the pile.
+    /// If so, checks if they are a valid match.
+    /// If so, casts a spell.
+    /// </summary>
+    public void CheckMatches()
+    {
+        if(m_currentlySelectedCards.Count != 2)
+        {
+            Debug.Log("There must be exactly two cards on the pile.");
+            return;
+        }
+
+        for(int i = 0; i < m_possibleMatches.Length; ++i)
+        {
+            CardMatchInfo currentlyCheckingMatch = m_possibleMatches[i];
+
+           /* if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) == true &&
+                m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard) == true)
+            {
+                Instantiate(currentlyCheckingMatch.m_resultingCard);
+               // Debug.Log(m_resultingCard.name);
+                return;
+                
+            }
+            else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) == true &&
+                m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) == true)
+            {
+                Instantiate(currentlyCheckingMatch.m_resultingCard);
+               // Debug.Log(m_resultingCard.name);
+                return;
+                
+            }
+            
+            else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) == true &&
+                m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard) == true)
+            {
+                Instantiate(currentlyCheckingMatch.m_resultingCard);
+               // Debug.Log(m_resultingCard.name);
+                return;
+                
+            }
+            
+            else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) == true &&
+                m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard) == true)
+            {
+                Instantiate(currentlyCheckingMatch.m_resultingCard);
+               // Debug.Log(m_resultingCard.name);
+                return;
+                
+            }
+            else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) == true &&
+                m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard) == true)
+            {
+                Instantiate(currentlyCheckingMatch.m_resultingCard);
+               // Debug.Log(m_resultingCard.name);
+                return;
+                
+            }
+            else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard) == true &&
+                m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard) == true)
+            {
+                Instantiate(currentlyCheckingMatch.m_resultingCard);
+               // Debug.Log(m_resultingCard.name);
+                return;
+                
+            }
+            else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard) == true &&
+                m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard) == true)
+            {
+                Instantiate(currentlyCheckingMatch.m_resultingCard);
+               // Debug.Log(m_resultingCard.name);
+                return;
+                
+            }
+            else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) == true &&
+                m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard) == true)
+            {
+                Instantiate(currentlyCheckingMatch.m_resultingCard);
+               // Debug.Log(m_resultingCard.name);
+                return;
+                
+            }
+            if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) == true &&
+                m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard) == true)
+            {
+                Instantiate(currentlyCheckingMatch.m_resultingCard);
+               // Debug.Log(m_resultingCard.name);
+                return;
+                
+            }
+            else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard) == true &&
+                m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard) == true)
+            {
+                Instantiate(currentlyCheckingMatch.m_resultingCard);
+               // Debug.Log(m_resultingCard.name);
+                return;
+                
+            }*/
+        }
+
+        Debug.Log("No match, try again");
+    }
+}
