@@ -88,8 +88,11 @@ public class CardManager : MonoBehaviour {
         {
             Debug.Log("There must be exactly two cards on the pile.");
             return;
-        } if(m_currentlySelectedCards.Count == 2) 
+        }
+        if(m_currentlySelectedCards.Count == 2) 
             {
+                Debug.Log("There are two cards on the pile.");
+                /*
                 for(int i = 0; i < m_possibleMatches.Length; ++i) 
                 {
                     CardMatchInfo currentlyCheckingMatch = m_possibleMatches[i];
@@ -102,6 +105,7 @@ public class CardManager : MonoBehaviour {
                         
                     }
                 }
+                */
             }
                 /*
                 CardMatchInfo currentlyCheckingMatch = m_possibleMatches[i];
@@ -192,3 +196,4 @@ public class CardManager : MonoBehaviour {
             Debug.Log("No match, try again");
         } */
     }
+}
