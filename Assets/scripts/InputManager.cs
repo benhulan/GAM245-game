@@ -72,9 +72,9 @@ public class InputManager : MonoBehaviour {
                 
                 //find out what we hit
                 Collider objectWeHit = hitInfo.collider;
-                
+              //  return objectWeHit.name;
                 // log the name of the object that was touched
-                Debug.Log(objectWeHit.name);
+                // Debug.Log(objectWeHit.name);
                 
                 // if-else-ifs to check which object was clicked and act accordingly
                 // use a switch statement for the same thing
@@ -83,6 +83,7 @@ public class InputManager : MonoBehaviour {
                 
                 //calls the function hideCard() on every script on the object if it exists
                 objectWeHit.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
+                objectWeHit.SendMessage("AddToPile", SendMessageOptions.DontRequireReceiver);      
             }
         }
     }    
