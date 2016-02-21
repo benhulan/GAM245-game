@@ -89,111 +89,103 @@ public class CardManager : MonoBehaviour {
             Debug.Log("There must be exactly two cards on the pile.");
             return;
         }
-        if(m_currentlySelectedCards.Count == 2) 
-            {
-                Debug.Log("There are two cards on the pile.");
-                /*
+        else if(m_currentlySelectedCards.Count == 2) 
+        {
+                //Debug.Log("There are two cards on the pile.");
+                
                 for(int i = 0; i < m_possibleMatches.Length; ++i) 
                 {
-                    CardMatchInfo currentlyCheckingMatch = m_possibleMatches[i];
-                    if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) &&
-                        m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard))
+                   CardMatchInfo currentlyCheckingMatch = m_possibleMatches[i];
+                   // Debug.Log(m_currentlySelectedCards[0], m_currentlySelectedCards[1]);
+                   Debug.Log(currentlyCheckingMatch);
+                   
+                    if (m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) && 
+                       m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard))
                     {
                         Instantiate(currentlyCheckingMatch.m_resultingCard);
-                        Debug.Log(m_resultingCard.name);
+                        Debug.Log(currentlyCheckingMatch.m_resultingCard.name);
                         return;
                         
                     }
+                    else if (m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) && 
+                        m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard))
+                    {
+                        Instantiate(currentlyCheckingMatch.m_resultingCard);
+                        Debug.Log(currentlyCheckingMatch.m_resultingCard.name);
+                        return;
+
+                    }
+
+                    else if (m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) && 
+                        m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard))
+                    {
+                        Instantiate(currentlyCheckingMatch.m_resultingCard);
+                        Debug.Log(currentlyCheckingMatch.m_resultingCard.name);
+                        return;
+
+                    }
+                    else if (m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) && 
+                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard))
+                    {
+                        Instantiate(currentlyCheckingMatch.m_resultingCard);
+                        Debug.Log(currentlyCheckingMatch.m_resultingCard.name);
+                        return;
+
+                    }
+                    else if (m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) && 
+                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard))
+                    {
+                        Instantiate(currentlyCheckingMatch.m_resultingCard);
+                        Debug.Log(currentlyCheckingMatch.m_resultingCard.name);
+                        return;
+
+                    }
+                    else if (m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard) && 
+                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard))
+                    {
+                        Instantiate(currentlyCheckingMatch.m_resultingCard);
+                        Debug.Log(currentlyCheckingMatch.m_resultingCard.name);
+                        return;
+
+                    }
+                    else if (m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard) && 
+                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard))
+                    {
+                        Instantiate(currentlyCheckingMatch.m_resultingCard);
+                        Debug.Log(currentlyCheckingMatch.m_resultingCard.name);
+                        return;
+
+                    }
+                    else if (m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) && 
+                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard))
+                    {
+                        Instantiate(currentlyCheckingMatch.m_resultingCard);
+                        Debug.Log(currentlyCheckingMatch.m_resultingCard.name);
+                        return;
+
+                    }
+                    else if (m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) && 
+                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard))
+                    {
+                        Instantiate(currentlyCheckingMatch.m_resultingCard);
+                        Debug.Log(currentlyCheckingMatch.m_resultingCard.name);
+                        return;
+
+                    }
+                    else if (m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard) && 
+                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard))
+                    {
+                        Instantiate(currentlyCheckingMatch.m_resultingCard);
+                        Debug.Log(currentlyCheckingMatch.m_resultingCard.name);
+                        return;
+
+                    }
                 }
-                */
-            }
-                /*
-                CardMatchInfo currentlyCheckingMatch = m_possibleMatches[i];
-                if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) == true &&
-                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard) == true)
-                {
-                    Instantiate(currentlyCheckingMatch.m_resultingCard);
-                    Debug.Log(m_resultingCard.name);
-                    return;
-                     
-                }
-                else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) == true &&
-                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) == true)
-                {
-                    Instantiate(currentlyCheckingMatch.m_resultingCard);
-                // Debug.Log(m_resultingCard.name);
-                    return;
-                    
-                }
-                
-                else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) == true &&
-                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard) == true)
-                {
-                    Instantiate(currentlyCheckingMatch.m_resultingCard);
-                // Debug.Log(m_resultingCard.name);
-                    return;
-                    
-                }
-                
-                else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_waterCard) == true &&
-                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard) == true)
-                {
-                    Instantiate(currentlyCheckingMatch.m_resultingCard);
-                // Debug.Log(m_resultingCard.name);
-                    return;
-                    
-                }
-                else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) == true &&
-                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard) == true)
-                {
-                    Instantiate(currentlyCheckingMatch.m_resultingCard);
-                // Debug.Log(m_resultingCard.name);
-                    return;
-                    
-                }
-                else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard) == true &&
-                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard) == true)
-                {
-                    Instantiate(currentlyCheckingMatch.m_resultingCard);
-                // Debug.Log(m_resultingCard.name);
-                    return;
-                    
-                }
-                else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard) == true &&
-                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_fireCard) == true)
-                {
-                    Instantiate(currentlyCheckingMatch.m_resultingCard);
-                // Debug.Log(m_resultingCard.name);
-                    return;
-                    
-                }
-                else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) == true &&
-                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard) == true)
-                {
-                    Instantiate(currentlyCheckingMatch.m_resultingCard);
-                // Debug.Log(m_resultingCard.name);
-                    return;
-                    
-                }
-                if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_airCard) == true &&
-                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard) == true)
-                {
-                    Instantiate(currentlyCheckingMatch.m_resultingCard);
-                // Debug.Log(m_resultingCard.name);
-                    return;
-                    
-                }
-                else if(m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_earthCard) == true &&
-                    m_currentlySelectedCards.Contains(currentlyCheckingMatch.m_energyCard) == true)
-                {
-                    Instantiate(currentlyCheckingMatch.m_resultingCard);
-                // Debug.Log(m_resultingCard.name);
-                    return;
-                    
-                }
-            } 
-        } else {
-            Debug.Log("No match, try again");
-        } */
+           }
+           //else {
+                Debug.Log("No match, try again");
+          // }
     }
+                
 }
+             
