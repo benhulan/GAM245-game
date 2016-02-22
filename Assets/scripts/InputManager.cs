@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+//using System.Collections;
 
 public class InputManager : MonoBehaviour {
 
@@ -17,25 +17,28 @@ public class InputManager : MonoBehaviour {
     
     //checks mouse input
     
-    private void Update()
-    {
+    // private void Update()
+    // {
         //on touch / mouse click
         
-        #if !UNITY_ANDROID
-        
-        //ON MOUSE CLICK
-        if (Input.GetMouseButtonDown(0) == true)
+//    #if !UNITY_ANDROID
+//     private void Update()
+//         {
+//         //ON MOUSE CLICK
+//         if (Input.GetMouseButtonDown(0) == true)
+//         {
+            
+//             //get the mouse position to world space
+//             Vector2 cursorPosition = Input.mousePosition;
+//             // Debug.Log("I am a mouse click");
+//             CheckInput(cursorPosition);
+//         }
+//        }
+//         #else
+    private void Update()
         {
             
-            //get the mouse position to world space
-            Vector2 cursorPosition = Input.mousePosition;
-            
-            CheckInput(cursorPosition);
-        }
-        
-        #else
-        
-        //Input.tuoch tells us how many fingers are touching the screen.
+        //Input.touch tells us how many fingers are touching the screen.
         if(Input.touchCount == 1)
         {
           //Gathering all touch input information
@@ -45,8 +48,9 @@ public class InputManager : MonoBehaviour {
             Touch firstTouch = touches[0];
             CheckTouch(firstTouch); 
         }
-        #endif   
-    }
+        
+        }
+       // #endif   
     
     private void CheckTouch(Touch touchInfo)
     {
@@ -70,6 +74,7 @@ public class InputManager : MonoBehaviour {
                 switch (touchPhase)
                 {
                     case TouchPhase.Began:
+                        Debug.Log("touch began");
                         break;
                     case TouchPhase.Moved:
                     // search the object we hit for any script that implements IDraggable
@@ -77,6 +82,7 @@ public class InputManager : MonoBehaviour {
                     // NOTE:  GetComponent returns null if no matches
                     if (draggableScript != null)
                     {
+                        Debug.Log("touch phase moved heard");
                         // call OnDrag() on whatever script we found
                         draggableScript.OnDrag(hitInfo.point, touchInfo.deltaPosition);                        
                     }
@@ -84,6 +90,7 @@ public class InputManager : MonoBehaviour {
                     
                     case TouchPhase.Stationary:
                     {
+                        Debug.Log("touch phase stationary");
                         // search the object we hit for any script that implements ITappable
                         ITappable tappableScript = objectWeHit.GetComponent<ITappable>();
                         
@@ -94,6 +101,7 @@ public class InputManager : MonoBehaviour {
                         break;
                     }
                     case TouchPhase.Ended:
+                    Debug.Log("Touch phase ended");
                     break;
                 } // ends switch
             } // ends if RaycastHit
@@ -118,6 +126,16 @@ public class InputManager : MonoBehaviour {
                 
                 //find out what we hit
                 Collider objectWeHit = hitInfo.collider;
+                
+                ITappable tappableScript = objectWeHit.GetComponent<ITappable>();
+                if (tappableScript != null)
+                {
+                    tappableScript.OnTap(hitInfo.point);
+                    Debug.Log("tap heard");
+                }
+                
+                
+                
                 //  return objectWeHit.name;
                 // log the name of the object that was touched
                 // Debug.Log(objectWeHit.name);
@@ -128,8 +146,8 @@ public class InputManager : MonoBehaviour {
                 // attach a script to the touchable object and call out to it
                 
                 //calls the function hideCard() on every script on the object if it exists
-                objectWeHit.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
-                objectWeHit.SendMessage("AddToPile", SendMessageOptions.DontRequireReceiver);      
+                // objectWeHit.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
+                // objectWeHit.SendMessage("AddToPile", SendMessageOptions.DontRequireReceiver);      
             }
         }
 }
