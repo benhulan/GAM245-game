@@ -67,6 +67,13 @@ public class InputManager : MonoBehaviour {
             if (Physics.Raycast(mouseCursorRay, out hitInfo) == true)
             {
                 Collider objectWeHit = hitInfo.collider;
+                Debug.Log(objectWeHit);
+                if (objectWeHit.tag == "circle")
+                {
+                    Debug.Log("we hit the circle");
+                    objectWeHit.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
+                    objectWeHit.SendMessage("AddToPile", SendMessageOptions.DontRequireReceiver);
+                }
                 
                 // extract the touch phase 
                 TouchPhase touchPhase = touchInfo.phase;
@@ -74,7 +81,7 @@ public class InputManager : MonoBehaviour {
                 switch (touchPhase)
                 {
                     case TouchPhase.Began:
-                        Debug.Log("touch began");
+                        // Debug.Log("touch began");
                         break;
                     case TouchPhase.Moved:
                     // search the object we hit for any script that implements IDraggable
@@ -82,7 +89,7 @@ public class InputManager : MonoBehaviour {
                     // NOTE:  GetComponent returns null if no matches
                     if (draggableScript != null)
                     {
-                        Debug.Log("touch phase moved heard");
+                        // Debug.Log("touch phase moved heard");
                         // call OnDrag() on whatever script we found
                         draggableScript.OnDrag(hitInfo.point, touchInfo.deltaPosition);                        
                     }
@@ -90,7 +97,7 @@ public class InputManager : MonoBehaviour {
                     
                     case TouchPhase.Stationary:
                     {
-                        Debug.Log("touch phase stationary");
+                        // Debug.Log("touch phase stationary");
                         // search the object we hit for any script that implements ITappable
                         ITappable tappableScript = objectWeHit.GetComponent<ITappable>();
                         
@@ -101,7 +108,7 @@ public class InputManager : MonoBehaviour {
                         break;
                     }
                     case TouchPhase.Ended:
-                    Debug.Log("Touch phase ended");
+                    // Debug.Log("Touch phase ended");
                     break;
                 } // ends switch
             } // ends if RaycastHit
