@@ -26,7 +26,7 @@ public class InputManager : MonoBehaviour {
         //ON MOUSE CLICK
         if (Input.GetMouseButtonDown(0) == true)
         {
-           
+            
             //get the mouse position to world space
             Vector2 cursorPosition = Input.mousePosition;
             
@@ -43,17 +43,63 @@ public class InputManager : MonoBehaviour {
           
            // Extracting only the first touch.
             Touch firstTouch = touches[0];
-
-            // Extract the position of that finger's touch.
-            Vector2 touchPosition = firstTouch.position;
-
-            // Check for input at this position.
-            CheckInput(touchPosition);  
+            CheckTouch(firstTouch); 
         }
-        
-        #endif
+        #endif   
     }
     
+    private void CheckTouch(Touch touchInfo)
+    {
+            // Extract the position of that finger's touch.
+            Vector2 touchPosition = touchInfo.position;
+
+            // Convert the mouse position to world space
+            Ray mouseCursorRay = my_camera.ScreenPointToRay(touchPosition);
+            
+            // Declare a RaycastHit object to recieve our results
+            RaycastHit hitInfo;
+            
+            // perform the actual raycast
+            if (Physics.Raycast(mouseCursorRay, out hitInfo) == true)
+            {
+                Collider objectWeHit = hitInfo.collider;
+                
+                // extract the touch phase 
+                TouchPhase touchPhase = touchInfo.phase;
+                
+                switch (touchPhase)
+                {
+                    case TouchPhase.Began:
+                        break;
+                    case TouchPhase.Moved:
+                    // search the object we hit for any script that implements IDraggable
+                    IDraggable draggableScript = objectWeHit.GetComponent<IDraggable>();
+                    // NOTE:  GetComponent returns null if no matches
+                    if (draggableScript != null)
+                    {
+                        // call OnDrag() on whatever script we found
+                        draggableScript.OnDrag(hitInfo.point, touchInfo.deltaPosition);                        
+                    }
+                    break;
+                    
+                    case TouchPhase.Stationary:
+                    {
+                        // search the object we hit for any script that implements ITappable
+                        ITappable tappableScript = objectWeHit.GetComponent<ITappable>();
+                        
+                        if (tappableScript != null)
+                        {
+                            tappableScript.OnTap(hitInfo.point);
+                        }                    
+                        break;
+                    }
+                    case TouchPhase.Ended:
+                    break;
+                } // ends switch
+            } // ends if RaycastHit
+    } // ends CheckTouch()    
+    
+// #endif
     /// <summary>
     /// Sends the OnClick message to anything under the input position.
     /// </summary>
@@ -72,7 +118,7 @@ public class InputManager : MonoBehaviour {
                 
                 //find out what we hit
                 Collider objectWeHit = hitInfo.collider;
-              //  return objectWeHit.name;
+                //  return objectWeHit.name;
                 // log the name of the object that was touched
                 // Debug.Log(objectWeHit.name);
                 
@@ -86,8 +132,4 @@ public class InputManager : MonoBehaviour {
                 objectWeHit.SendMessage("AddToPile", SendMessageOptions.DontRequireReceiver);      
             }
         }
-    }    
-        
-            
-           
-
+}
