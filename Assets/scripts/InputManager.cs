@@ -91,7 +91,8 @@ public class InputManager : MonoBehaviour {
                     {
                         // Debug.Log("touch phase moved heard");
                         // call OnDrag() on whatever script we found
-                        draggableScript.OnDrag(hitInfo.point, touchInfo.deltaPosition);                        
+                        draggableScript.OnDrag(hitInfo.point, touchInfo.deltaPosition);     
+                        Debug.Log("Im dragging");                   
                     }
                     break;
                     
@@ -104,6 +105,7 @@ public class InputManager : MonoBehaviour {
                         if (tappableScript != null)
                         {
                             tappableScript.OnTap(hitInfo.point);
+                            Debug.Log("Im tapping");  
                         }                    
                         break;
                     }

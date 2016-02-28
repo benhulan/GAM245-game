@@ -10,6 +10,6 @@ public interface ITappable
 /// <summary>
 /// Called when this object is tapped by the user
 ///</summary>
-void OnTap(Vector3 worldPosition);
+void OnTap(Vector3 initialPosition);
 
 }
