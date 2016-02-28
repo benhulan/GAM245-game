@@ -4,9 +4,19 @@ using System;
 
 public class Dragger : MonoBehaviour, ITappable, IDraggable
 {
-    public void OnTap(Vector3 initialPosition)
+    
+    private Vector3 startPosition;
+    
+     public void Start()
     {
-        MoveTo(initialPosition);
+        //saves the initial position of the object
+       startPosition = this.transform.position;
+       Debug.Log(startPosition); 
+    }
+    
+    public void OnTap(Vector3 startPosition)
+    {
+       MoveBackTo(startPosition);
     }
     public void OnDrag(Vector3 worldPosition, Vector2 dragVelocity)
     {
@@ -16,19 +26,24 @@ public class Dragger : MonoBehaviour, ITappable, IDraggable
     {
         worldPosition.z = this.transform.position.z;
         this.transform.position = worldPosition;
-       OnTriggerEnter();
     }
     
+    public void MoveBackTo(Vector3 startPosition)
+    {
+        //startPosition.z = this.transform.position.z;
+        transform.position = this.startPosition;
+    }
+    /*
     public void OnTriggerEnter(Collider trigger)
     {
         //this.GetComponent<Renderer>().enabled = false;
-        string spellCardToShow = gameObject.name;
-        
+        // string spellCardToShow = gameObject.name;
+        Collider trigger = 
        Debug.Log("Hello from OnTriggerEnter");
         //this.GameObject.name;
            
         //Debug.Log(spellCardToShow);
-       /*
+       
         switch (spellCardToShow)
             {
             case "energy":
@@ -87,8 +102,8 @@ public class Dragger : MonoBehaviour, ITappable, IDraggable
             Debug.Log("Hello");
                 //this.GetComponent<Renderer>().enabled = false;
                 break;
-            } */
-        }    
+            } 
+        }    */
         
     }
 
