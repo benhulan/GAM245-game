@@ -11,7 +11,7 @@ public class Dragger : MonoBehaviour, ITappable, IDraggable
     {
         //saves the initial position of the object
        startPosition = this.transform.position;
-       Debug.Log(startPosition); 
+       //Debug.Log(startPosition); 
     }
     
     public void OnTap(Vector3 startPosition)

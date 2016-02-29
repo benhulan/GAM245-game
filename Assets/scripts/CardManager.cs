@@ -32,6 +32,15 @@ public class CardManager : MonoBehaviour {
             
         }
     }
+    
+    public void OnTriggerEnter(Collider trigger)
+    {
+        if(trigger.tag != "circle" )
+        {
+            AddToPile(this.gameObject);
+            Debug.Log("I'm adding to the pile");
+        }
+    }
     //-------------------------
     /// <summary>
     /// Adds a card to the pile of currently selected cards.
@@ -41,7 +50,7 @@ public class CardManager : MonoBehaviour {
     
     public void AddToPile(GameObject card)
     {
-        Debug.Log(card);
+       // Debug.Log(card);
         if(m_currentlySelectedCards.Count >= 2)
         {
             // already full

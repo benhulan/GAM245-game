@@ -89,16 +89,17 @@ public class InputManager : MonoBehaviour {
             if (Physics.Raycast(mouseCursorRay, out hitInfo) == true)
             {
                 Collider objectWeHit = hitInfo.collider;
+                
                 // Debug.Log(objectWeHit);
-                if (objectWeHit.tag == "circle")
-                {
+                // if (objectWeHit.tag == "circle")
+                // {
                     
-                    atp.AddToPile(this.gameObject);
+                //     //atp.AddToPile(this.gameObject);
                     
-                   // Debug.Log("we hit the circle");
-                    // objectWeHit.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
-                    // objectWeHit.SendMessage("AddToPile", SendMessageOptions.DontRequireReceiver);
-                }
+                //    Debug.Log("we hit the circle");
+                //     // objectWeHit.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
+                //     // objectWeHit.SendMessage("AddToPile", SendMessageOptions.DontRequireReceiver);
+                // }
                 
                 // extract the touch phase 
                 TouchPhase touchPhase = touchInfo.phase;
