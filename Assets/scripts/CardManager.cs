@@ -5,6 +5,12 @@ using System.Collections.Generic;
 
 
 public class CardManager : MonoBehaviour {
+    
+    [SerializeField] public GameObject m_waterCard = null;
+    [SerializeField] public GameObject m_fireCard = null;
+    [SerializeField] public GameObject m_airCard = null;
+    [SerializeField] public GameObject m_energyCard = null;
+    [SerializeField] public GameObject m_earthCard = null;
 
 
     public CardMatch[] m_possibleMatches2 = null;
@@ -33,14 +39,6 @@ public class CardManager : MonoBehaviour {
         }
     }
     
-    public void OnTriggerEnter(Collider trigger)
-    {
-        if(trigger.tag != "circle" )
-        {
-            AddToPile(this.gameObject);
-            Debug.Log("I'm adding to the pile");
-        }
-    }
     //-------------------------
     /// <summary>
     /// Adds a card to the pile of currently selected cards.
