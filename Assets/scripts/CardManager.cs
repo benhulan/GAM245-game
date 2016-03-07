@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ public class CardManager : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Q))
         {
             CheckMatches2();
+            Debug.Log("CheckMatches");
             
         }
     }
@@ -84,7 +86,7 @@ public class CardManager : MonoBehaviour {
                 if(m_currentlySelectedCards.Contains(card) == false)
                 {
                     success = false;
-                    Debug.Log("hello");
+                    Debug.Log("doesn't have two cards to match");
                     break;
                 }
                 
@@ -92,9 +94,11 @@ public class CardManager : MonoBehaviour {
             
             if (success == true)
             {
-                
-                Instantiate(match.resultPrefab);
-                Debug.Log(match.resultPrefab.name);
+               
+                // Find the textbox game object
+                // Get the Text component
+                // Change the visible text
+                GameObject.Find("Spell Name Text").GetComponent<Text>().text = match.spellName;
             }
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class NextLevel : MonoBehaviour {
+public class NextLevel : MonoBehaviour{
 
 	public string sceneToLoad = null;
     //public static void LoadScene(int sceneBuildIndex, SceneManagement.LoadSceneMode mode = LoadSceneMode.Single);

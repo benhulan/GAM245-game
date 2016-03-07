@@ -55,6 +55,8 @@
      <Compile Include="Assets\scripts\ITappable.cs" />
      <Compile Include="Assets\scripts\InputManager.cs" />
      <Compile Include="Assets\scripts\NextLevel.cs" />
+     <Compile Include="Assets\scripts\NextPage.cs" />
+     <Compile Include="Assets\scripts\Slide.cs" />
      <Compile Include="Assets\scripts\Swiper.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>

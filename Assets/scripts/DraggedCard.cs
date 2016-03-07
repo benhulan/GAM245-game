@@ -6,7 +6,7 @@ public class DraggedCard : MonoBehaviour {
 
 
    public CardManager cm;
-    
+   
    private Vector3 startPosition;
     
      public void Start()
@@ -14,6 +14,7 @@ public class DraggedCard : MonoBehaviour {
         //saves the initial position of the object
        startPosition = this.transform.position;
        //Debug.Log(startPosition); 
+     
     }
 		
     public void Update()
@@ -28,6 +29,11 @@ public class DraggedCard : MonoBehaviour {
         GameObject card = trigger.gameObject;
         CardManager cm = card.GetComponent<CardManager>();
         
+        if(cm == null)
+        {
+            return;
+        }
+        
         if(cm.m_currentlySelectedCards.Count >= 2)
         {
             // already full
@@ -35,8 +41,11 @@ public class DraggedCard : MonoBehaviour {
             transform.position = this.startPosition;
             return;
         }
-        else if(cm.m_currentlySelectedCards.Count < 3)
+        //else if(cm.m_currentlySelectedCards.Count < 2)
+        else
         {
+           
+            
             if (gameObject.tag == "water")
                 
             {   
@@ -77,6 +86,12 @@ public class DraggedCard : MonoBehaviour {
         GameObject card = trigger.gameObject;
         CardManager cm = card.GetComponent<CardManager>();
         
+            if(cm == null)
+            {
+                return;
+            }
+            
+            
             if (gameObject.tag == "water")
                 
             {   
