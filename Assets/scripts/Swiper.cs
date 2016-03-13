@@ -10,32 +10,20 @@ public class Swiper : MonoBehaviour, ISwipeable
         Vector3 end;
 
         private RectTransform rt;
+        private InputManager im;
 
         // Use this for initialization
         void Start ()
         {
-            rt = this.GetComponent<RectTransform>();
+            rt = GameObject.Find("Panel-ignite-spell").GetComponent<RectTransform>();
+            im = GameObject.Find("inputManager").GetComponent<InputManager>();
+
 
         }
         
         // Update is called once per frame
         void Update ()
         {
-            
-        } 
-    
-    // public void OnTap(Vector3 startPosition)
-    public void OnSwipe(Vector2 direction, float time, Vector3 worldPosition)
-    {
-        // if(Input.GetKeyDown(KeyCode.L))
-        //     {
-                // isMoving = true;
-
-                // start = rt.anchoredPosition;
-                // end = start;
-                // end.x +=rt.rect.width;
-            // }
-
             if(isMoving == true)
             {
                 timer += Time.deltaTime;
@@ -47,6 +35,23 @@ public class Swiper : MonoBehaviour, ISwipeable
                     isMoving = false;
                 }
             }
+        } 
+    
+    // public void OnTap(Vector3 startPosition)
+    public void OnSwipe(Vector2 direction, float time, Vector3 worldPosition)
+    {
+        isMoving = true;
+        start = rt.anchoredPosition;
+        end = start;
+        if(direction.x < 0)
+        {
+            end.x +=rt.rect.width;
+        } else
+        {
+            end.x -=rt.rect.width;    
+        }
+
+            
     }
     
     /*

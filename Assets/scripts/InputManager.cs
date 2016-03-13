@@ -106,12 +106,13 @@ public class InputManager : MonoBehaviour {
                     // search the object we hit for any script that implements IDraggable
                     IDraggable draggableScript = objectWeHit.GetComponent<IDraggable>();
                     // NOTE:  GetComponent returns null if no matches
+                    // Debug.Log("Im dragging?"); 
                     if (draggableScript != null)
                     {
                         // Debug.Log("touch phase moved heard");
                         // call OnDrag() on whatever script we found
                         draggableScript.OnDrag(hitInfo.point, touchInfo.deltaPosition);     
-                         Debug.Log("Im dragging");                   
+                        //  Debug.Log("Im dragging");                   
                     }
                     break;
                     
@@ -135,7 +136,7 @@ public class InputManager : MonoBehaviour {
 
                             // Search the object we hit for any script that implements / conforms to ITappable.
                             ITappable tappableScript = objectWeHit.GetComponent<ITappable>();
-                               Debug.Log("Im tapping"); 
+                            //    Debug.Log("Im tapping"); 
                             // NOTE: GetComponent() returns null if it doesn't find anything that matches.
                             // To account for this by checking if tappableScript is null before continuing.
                             if (tappableScript != null)
@@ -149,13 +150,14 @@ public class InputManager : MonoBehaviour {
                             // swipe with the same duration as a tap.
                             // Search the object we hit for any script that implements / conforms to ISwipeable.
                             ISwipeable swipeScript = objectWeHit.GetComponent<ISwipeable>(); 
-                             Debug.Log("Im swiping"); 
+                            //  Debug.Log("Im swiping"); 
                             // NOTE: GetComponent() returns null if it doesn't find anything that matches.
                             // To account for this by checking if swipeScript is null before continuing.
                             if (swipeScript != null)
                             {
                                 // Whatever script was found with ISwipeable, call the OnTap() function on it.
                                 swipeScript.OnSwipe(touchInfo.deltaPosition, touchDuration, hitInfo.point);
+                                Debug.Log(touchInfo.deltaPosition.x);
                             }
                         }
                     }

@@ -56,14 +56,24 @@
      <Compile Include="Assets\scripts\InputManager.cs" />
      <Compile Include="Assets\scripts\NextLevel.cs" />
      <Compile Include="Assets\scripts\NextPage.cs" />
+     <Compile Include="Assets\scripts\PowerSlider.cs" />
      <Compile Include="Assets\scripts\Slide.cs" />
      <Compile Include="Assets\scripts\Swiper.cs" />
+     <None Include="Assets\Plugins\AmazonIAPNotice.txt" />
+     <None Include="Assets\Plugins\AmazonIAPLicense.txt" />
+     <None Include="Assets\Plugins\AmazonIAPAndroid\Manifest.xml" />
+     <None Include="Assets\Plugins\AmazonCommon\Source\MiniJSON\LICENSE.txt" />
+     <None Include="Assets\Plugins\AmazonIAPPluginVersion.txt" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{C4F7F924-5557-D138-9B78-086C24C8ECB7}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

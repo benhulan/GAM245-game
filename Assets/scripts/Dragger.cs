@@ -12,7 +12,7 @@ public class Dragger : MonoBehaviour, ITappable, IDraggable, ISwipeable
     {
         //saves the initial position of the object
        startPosition = this.transform.position;
-       cm = GameObject.Find("circle-dotted-line").GetComponent<CardManager>();
+       //cm = GameObject.Find("circle-dotted-line").GetComponent<CardManager>();
        //Debug.Log(startPosition); 
     }
     
