@@ -11,14 +11,16 @@ public class PowerSlider : MonoBehaviour{
     // public float maxPower;
     
     
-    public bool points;
+    //public bool points;
+    
+    public int points = 0;
     
 	// Use this for initialization
 	void Start () {
-        
-	Debug.Log(points);
-        powerSlider.value = 0;
-        points = false;  
+         
+	//    Debug.Log(points);
+       powerSlider.value = 0;
+//       points = false;  
 	}
 	
 	// Update is called once per frame
@@ -28,6 +30,8 @@ public class PowerSlider : MonoBehaviour{
         // powerSlider.minValue = 0;
         
        // AddPower();
+       
+       powerSlider.value = points;
 	
 	}
     //  public void PowerBar()
@@ -38,40 +42,41 @@ public class PowerSlider : MonoBehaviour{
 	// }
     
   public void  OnTriggerEnter(Collider trigger){
-     // GameObject pointGranter = trigger.gameObject;
+      GameObject pointGranter = trigger.gameObject;
         // if(gameObject.tag == "twoPoints")
         // {
-            points = true;
+           // points++;
+            //Debug.Log(points);
+        // } else  
+        if(pointGranter.tag == "onePoint")
+        {
+            points++;
             Debug.Log(points);
-        // } else  if(gameObject.tag == "onePoint")
-        // {
-            // points++;
-            // Debug.Log(points);
-        // }
+        }
         //  Slider.value ++;
 		//Displays the value of the slider in the console.
        
     }
     
     
-    public void  OnTriggerExit(Collider trigger){
+    // public void  OnTriggerExit(Collider trigger){
     //  GameObject pointGranter = trigger.gameObject;
        
-            points = false;
-            Debug.Log(points);
-            Debug.Log (powerSlider.value); 
+            // points = false;
+            // Debug.Log(points);
+            // Debug.Log (powerSlider.value); 
           
-    }
+    // }
     
-    public void AddPower(){
+    // public void AddPower(){
         
       //  powerSlider.value = 0;
         
-        if (points == true){
-                ++powerSlider.value;
-                Debug.Log (powerSlider.value); 
-        }    
-    }
+    //     if (points == true){
+    //             ++powerSlider.value;
+    //             Debug.Log (powerSlider.value); 
+    //     }    
+    // }
     
     //  public void  OnTap(Vector3 startPosition){
     // //   GameObject pointGranter = trigger.gameObject;
