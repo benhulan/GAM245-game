@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PowerSlider : MonoBehaviour{
 
@@ -32,6 +33,10 @@ public class PowerSlider : MonoBehaviour{
        // AddPower();
        
        powerSlider.value = points;
+       
+       if(points == 10){
+           SceneManager.LoadScene(2);
+       }
 	
 	}
     //  public void PowerBar()
@@ -51,6 +56,10 @@ public class PowerSlider : MonoBehaviour{
         if(pointGranter.tag == "onePoint")
         {
             points++;
+            Debug.Log(points);
+        }else if(pointGranter.tag == "twoPoints")
+        {
+            points += 2;
             Debug.Log(points);
         }
         //  Slider.value ++;
