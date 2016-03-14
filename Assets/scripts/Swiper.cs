@@ -8,6 +8,7 @@ public class Swiper : MonoBehaviour, ISwipeable
         float timer = 0;
         Vector3 start;
         Vector3 end;
+    public GameObject Cubo;
 
         private RectTransform rt;
         private InputManager im;
@@ -15,10 +16,10 @@ public class Swiper : MonoBehaviour, ISwipeable
         // Use this for initialization
         void Start ()
         {
-            rt = GameObject.Find("Panel-ignite-spell").GetComponent<RectTransform>();
+            rt = GameObject.FindWithTag("page").GetComponent<RectTransform>();
             im = GameObject.Find("inputManager").GetComponent<InputManager>();
-
-
+            Cubo = GameObject.Find("Cube");
+           
         }
         
         // Update is called once per frame
@@ -34,6 +35,13 @@ public class Swiper : MonoBehaviour, ISwipeable
                 {
                     isMoving = false;
                 }
+                if(end.x == -809){
+                    Debug.Log(Cubo);
+                
+                    Cubo.SetActive(false);
+                }
+                
+                //Debug.Log(end.x);
             }
         } 
     
@@ -45,10 +53,10 @@ public class Swiper : MonoBehaviour, ISwipeable
         end = start;
         if(direction.x < 0)
         {
-            end.x +=rt.rect.width;
+            end.x -=rt.rect.width;
         } else
         {
-            end.x -=rt.rect.width;    
+            end.x +=rt.rect.width;    
         }
 
             

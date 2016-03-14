@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Slide : MonoBehaviour
 {
+   
+    
     bool isMoving = false;
     float timer = 0;
     Vector3 start;
@@ -13,13 +16,16 @@ public class Slide : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        rt = this.GetComponent<RectTransform>();
+        //rt = this.GetComponent<RectTransform>();
+        rt =  GameObject.FindWithTag("page").GetComponent<RectTransform>();
 
     }
     
     // Update is called once per frame
     void Update ()
     {
+
+        
         if(Input.GetKeyDown(KeyCode.L))
         {
             isMoving = true;
