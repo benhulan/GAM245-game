@@ -22,11 +22,11 @@ public class AmazonIAPUIManager : MonoBehaviour {
     // intended for use with the SDK Tester. This file has some simple test SKUs,
     // and this sample application has been written to make use of the same JSON file.
     string [] buttonClickerSkus = new string[] {
-        "com.amazon.buttonclicker.blue_button",
-        "com.amazon.buttonclicker.green_button", 
-        "com.amazon.buttonclicker.purple_button", 
-        "com.amazon.buttonclicker.subscription.1mo",
-        "com.amazon.buttonclicker.ten_clicks",
+        "com.yesselhinojosa.buttonclicker.earth-card",
+        "com.yesselhinojosa.buttonclicker.water-card", 
+        "com.yesselhinojosa.buttonclicker.air-card", 
+        "com.yesselhinojosa.buttonclicker.fire-card",
+        "com.yesselhinojosa.buttonclicker.enery-card",
     };
     
     #region UI data

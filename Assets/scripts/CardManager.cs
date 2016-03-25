@@ -15,7 +15,7 @@ public class CardManager : MonoBehaviour {
 
 
     public CardMatch[] m_possibleMatches2 = null;
-
+   
     
     //string m_resultingCard = gameObject.name;
 
@@ -99,6 +99,10 @@ public class CardManager : MonoBehaviour {
                 // Get the Text component
                 // Change the visible text
                 GameObject.Find("Spell Name Text").GetComponent<Text>().text = match.spellName;
+                
+                
+                GameObject.Find("Points Awarded For Spell").GetComponent<Text>().text = match.pointsAwardedForSpell.ToString();
+                
             }
         }
     }

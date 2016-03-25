@@ -14,6 +14,9 @@ public class CardMatch
     public Text spellNameTextBox;
     public string spellName;
     
+    public Text pointsAwardedForSpellTextBox;
+    public int pointsAwardedForSpell;
+    
     // Arty
     //public GameObject specificUIElement;
 }

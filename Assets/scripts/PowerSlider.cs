@@ -8,11 +8,18 @@ public class PowerSlider : MonoBehaviour{
     //PowerSlider
     public Slider powerSlider = null;
     
-   
-    // public float maxPower;
+    public Timer tm;
+    
+    public int pointsAwarded = 0;
     
     
-    //public bool points;
+    public bool timerIsOn = false;
+    public float timeToIgnite = 120.0f;
+   // public int duration = 120;
+    //public int pointsAwarded;
+	
+    
+//public  points to ignite the spell;
     
     public int points = 0;
     
@@ -26,6 +33,7 @@ public class PowerSlider : MonoBehaviour{
 	
 	// Update is called once per frame
 	void Update () {
+        timeToIgnite -= Time.deltaTime;
         
         // powerSlider.maxValue = maxPower;
         // powerSlider.minValue = 0;
@@ -34,9 +42,45 @@ public class PowerSlider : MonoBehaviour{
        
        powerSlider.value = points;
        
-       if(points == 10){
+       if(points >= 10){
+           if(timeToIgnite > 110 )
+           {
+            pointsAwarded = 11;    
+           }
+           else if(timeToIgnite > 100 )
+           {
+            pointsAwarded = 5;    
+           }
+           else if(timeToIgnite > 90 )
+           {
+            pointsAwarded = 4;    
+           }
+           else if(timeToIgnite > 80 )
+           {
+            pointsAwarded = 4;    
+           }
+           else if(timeToIgnite > 70 )
+           {
+            pointsAwarded = 3;    
+           }
+           else if(timeToIgnite > 60 )
+           {
+            pointsAwarded = 2;    
+           }
+           else if(timeToIgnite > 50 )
+           {
+            pointsAwarded = 1;    
+           }
+           else
+           {
+            pointsAwarded = 0;    
+           }
+           Debug.Log(pointsAwarded+" points awarded");
+           
            SceneManager.LoadScene(2);
        }
+       
+    //    Debug.Log(timeToIgnite);
 	
 	}
     //  public void PowerBar()

@@ -1,0 +1,88 @@
+{
+
+  "com.yesselhinojosa.buttonclicker.water-card" : {
+
+    "itemType": "CONSUMABLE",
+
+    "price": 0.99,
+
+	"title": "Water",
+
+	"description": "Buy water for your spells",
+
+    "smallIconUrl": "http://some/image.jpg"
+
+  },
+
+  "com.yesselhinojosa.buttonclicker.air-card" : {
+
+    "itemType": "CONSUMABLE",
+
+    "price": 0.99,
+
+	"title": "Air",
+
+	"description": "Buy air for your spells",
+
+    "smallIconUrl": "http://some/image.jpg"
+
+  },
+
+  "com.yesselhinojosa.buttonclicker.fire-card" : {
+
+    "itemType": "CONSUMABLE",
+
+    "price": 0.99,
+
+	"title": "Fire",
+
+	"description": "Buy fire for your spells",
+
+    "smallIconUrl": "http://some/image.jpg"
+
+  },
+
+  "com.yesselhinojosa.buttonclicker.energy-card" : {
+
+    "itemType" : "CONSUMABLE",
+
+    "price" : 0.99,
+
+    "title": "Energy",
+
+    "description": "Buy energy for your spells",
+
+    "smallIconUrl": "http://some/image.jpg"
+
+  },
+
+  "com.yesselhinojosa.buttonclicker.earth-card" : {
+
+    "itemType": "CONSUMABLE",
+
+    "price": 0.99,
+
+    "title": "Earth",
+
+    "description": "Buy energy for your spells",
+
+    "smallIconUrl": "http://some/image.jpg"
+
+  },
+
+  "com.yesselhinojosa.buttonclicker.fifteen-seconds-on-the-clock" : {
+
+    "itemType": "CONSUMABLE",
+
+    "price": 0.99,
+
+    "title": "15 seconds",
+
+    "description": "15 more seconds on the timer",
+
+    "smallIconUrl": "http://some/image.jpg"
+
+  }
+
+}
+
