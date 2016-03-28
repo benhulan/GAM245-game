@@ -52,6 +52,8 @@
      <Compile Include="Assets\scripts\DraggedCard.cs" />
      <Compile Include="Assets\scripts\Dragger.cs" />
      <Compile Include="Assets\scripts\EventManager.cs" />
+     <Compile Include="Assets\scripts\HideObject.cs" />
+     <Compile Include="Assets\scripts\HideToShow.cs" />
      <Compile Include="Assets\scripts\IAP\AmazonStoreV1.cs" />
      <Compile Include="Assets\scripts\IAP\IStore.cs" />
      <Compile Include="Assets\scripts\IAP\StoreManager.cs" />
@@ -61,6 +63,8 @@
      <Compile Include="Assets\scripts\InputManager.cs" />
      <Compile Include="Assets\scripts\NextLevel.cs" />
      <Compile Include="Assets\scripts\NextPage.cs" />
+     <Compile Include="Assets\scripts\PointAwardedScreen.cs" />
+     <Compile Include="Assets\scripts\PointsAwarded.cs" />
      <Compile Include="Assets\scripts\PowerSlider.cs" />
      <Compile Include="Assets\scripts\Slide.cs" />
      <Compile Include="Assets\scripts\Swiper.cs" />

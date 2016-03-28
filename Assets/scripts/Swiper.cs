@@ -5,13 +5,15 @@ using System;
 public class Swiper : MonoBehaviour, ISwipeable
 {
     bool isMoving = false;
-        float timer = 0;
-        Vector3 start;
-        Vector3 end;
+    float timer = 0;
+    Vector3 start;
+    Vector3 end;
     public GameObject Cubo;
+    
+    public int pageLength = 800;   
 
-        private RectTransform rt;
-        private InputManager im;
+    private RectTransform rt;
+    private InputManager im;
 
         // Use this for initialization
         void Start ()
@@ -35,13 +37,13 @@ public class Swiper : MonoBehaviour, ISwipeable
                 {
                     isMoving = false;
                 }
-                if(end.x == -809){
+                if(end.x <= -pageLength){
                     Debug.Log(Cubo);
                 
                     Cubo.SetActive(false);
                 }
                 
-                //Debug.Log(end.x);
+                Debug.Log(end.x);
             }
         } 
     

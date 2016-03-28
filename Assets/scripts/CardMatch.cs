@@ -8,14 +8,14 @@ using System.Collections.Generic;
 public class CardMatch 
 {
     public List<GameObject> requirements;
-    public GameObject resultPrefab;
+    //public GameObject resultPrefab;
     
     // Simple
     public Text spellNameTextBox;
     public string spellName;
     
-    public Text pointsAwardedForSpellTextBox;
-    public int pointsAwardedForSpell;
+    // public Text pointsAwardedForSpellTextBox;
+    // public int pointsAwardedForSpell;
     
     // Arty
     //public GameObject specificUIElement;

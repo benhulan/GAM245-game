@@ -10,13 +10,15 @@ public class NextPage : MonoBehaviour
     
     private InputManager im;
     private RectTransform rt;
-
+    public GameObject Cubo;
+    
+    public int pageLength = 800; 
     // Use this for initialization
     void Start ()
     {
         rt = GameObject.FindWithTag("page").GetComponent<RectTransform>();
         im = GameObject.Find("inputManager").GetComponent<InputManager>();
-
+            Cubo = GameObject.Find("Cube");
     }
     
     void Update (){
@@ -29,6 +31,11 @@ public class NextPage : MonoBehaviour
                 if(timer > 1)
                 {
                     isMoving = false;
+                }
+                if(end.x <= -pageLength){
+                    Debug.Log(Cubo);
+                
+                    Cubo.SetActive(false);
                 }
             }
     }

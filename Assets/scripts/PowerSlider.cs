@@ -9,8 +9,9 @@ public class PowerSlider : MonoBehaviour{
     public Slider powerSlider = null;
     
     public Timer tm;
+    public CardManager cm;
     
-    public int pointsAwarded = 0;
+    // public int pointsAwarded = 0;
     
     
     public bool timerIsOn = false;
@@ -30,9 +31,17 @@ public class PowerSlider : MonoBehaviour{
        powerSlider.value = 0;
 //       points = false;  
 	}
+   
+    private void Awake(){
+        
+        DontDestroyOnLoad(GameObject.FindWithTag("circle"));
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        GameObject pointsAwardedManager = GameObject.FindWithTag("circle");
+        CardManager cm = pointsAwardedManager.GetComponent<CardManager>();
+        
         timeToIgnite -= Time.deltaTime;
         
         // powerSlider.maxValue = maxPower;
@@ -43,39 +52,42 @@ public class PowerSlider : MonoBehaviour{
        powerSlider.value = points;
        
        if(points >= 10){
-           if(timeToIgnite > 110 )
+           if(timeToIgnite > 115 )
            {
-            pointsAwarded = 11;    
+            cm.pointsAwarded += 12;    
+           }else if(timeToIgnite > 110 )
+           {
+            cm.pointsAwarded += 8;    
            }
            else if(timeToIgnite > 100 )
            {
-            pointsAwarded = 5;    
+            cm.pointsAwarded += 5;    
            }
            else if(timeToIgnite > 90 )
            {
-            pointsAwarded = 4;    
+            cm.pointsAwarded += 4;    
            }
            else if(timeToIgnite > 80 )
            {
-            pointsAwarded = 4;    
+            cm.pointsAwarded += 4;    
            }
            else if(timeToIgnite > 70 )
            {
-            pointsAwarded = 3;    
+            cm.pointsAwarded += 3;    
            }
            else if(timeToIgnite > 60 )
            {
-            pointsAwarded = 2;    
+            cm.pointsAwarded += 2;    
            }
            else if(timeToIgnite > 50 )
            {
-            pointsAwarded = 1;    
+            cm.pointsAwarded += 1;    
            }
            else
            {
-            pointsAwarded = 0;    
+            cm.pointsAwarded += 0;    
            }
-           Debug.Log(pointsAwarded+" points awarded");
+           Debug.Log(cm.pointsAwarded+" points awarded");
            
            SceneManager.LoadScene(2);
        }
