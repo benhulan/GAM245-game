@@ -1,6 +1,6 @@
 {
 
-  "com.yesselhinojosa.buttonclicker.water-card" : {
+  "com.amazon.buttonclicker.water-card" : {
 
     "itemType": "CONSUMABLE",
 
@@ -14,7 +14,7 @@
 
   },
 
-  "com.yesselhinojosa.buttonclicker.air-card" : {
+  "com.amazon.buttonclicker.air-card" : {
 
     "itemType": "CONSUMABLE",
 
@@ -28,7 +28,7 @@
 
   },
 
-  "com.yesselhinojosa.buttonclicker.fire-card" : {
+  "com.yesselhinojosa.buttonclicker.fire" : {
 
     "itemType": "CONSUMABLE",
 
@@ -42,7 +42,7 @@
 
   },
 
-  "com.yesselhinojosa.buttonclicker.energy-card" : {
+  "com.yesselhinojosa.buttonclicker.energy" : {
 
     "itemType" : "CONSUMABLE",
 
@@ -56,7 +56,7 @@
 
   },
 
-  "com.yesselhinojosa.buttonclicker.earth-card" : {
+  "com.yesselhinojosa.buttonclicker.earth" : {
 
     "itemType": "CONSUMABLE",
 

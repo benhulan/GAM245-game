@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-//using System.Collections;
+using System.Collections;
+using System.Collections.Generic;
 
 public class InputManager : MonoBehaviour {
 
@@ -20,13 +21,41 @@ public class InputManager : MonoBehaviour {
     /// The time that the last touch began, in seconds.
     /// </summary>
     private float m_touchBeginTime = 0;
-
+    
     /// <summary>
     /// Current accelerometer reading.
     /// </summary>
     private Vector3 m_currentAcceleration = Vector3.zero;
+
+    /// <summary>
+    /// References to all IAcceleratable scripts in the scene.
+    /// </summary>
+    public static List<IAcceleratable> m_acceleratableObjects = new List<IAcceleratable>();
+
+    /// <summary>
+    /// References to all IPinchable scripts in the scene.
+    /// </summary>
+    //public static List<IPinchable> m_pinchableObjects = new List<IPinchable>();
+
+    /// <summary>
+    /// Reference to the Gyroscope readout from Unity.
+    /// </summary>
+    private Gyroscope m_gyro = null;
+
+    /// <summary>
+    /// How far apart fingers are during a pinch gesture.
+    /// </summary>
+    private float m_pinchDistanceLastFrame = 0;
+
     
     public CardManager atp;
+    
+    
+    //variables to move through the space with using the accelerometer
+    public float speed = 5.0F;
+    Vector3 initialPosition;
+    Vector3 deviceAcceleration;
+    Vector3 deltaRotation = Vector3.zero;
     
     //finds a default camara to work with
     
@@ -35,6 +64,14 @@ public class InputManager : MonoBehaviour {
         //Camera.main returns a reference to any camera game Object with the "MainCamera" tag
         
         my_camera = Camera.main;
+    
+    }
+    
+    private void Start ()
+    {
+        //saves the initial position of the object
+       initialPosition = this.transform.position;
+       // Debug.Log(initialPosition.ToString());  // works!
     }
     
     //checks mouse input
@@ -57,8 +94,28 @@ public class InputManager : MonoBehaviour {
 //         }
 //        }
 //         #else
+
+ private void Awake()
+    {
+        // Find the Gyroscope.
+        // m_gyro = Input.gyro;
+
+
+        // Check if it was found.
+        // if(m_gyro == null)
+        // {
+        //     // Error out if it wasn't found.
+        //     DebugLogger.LogMessage("Gyroscope not detected.");
+        // }
+        // else
+        // {
+        //     // Enable it if it was found.
+        //     DebugLogger.LogMessage("Gyroscope detected.");
+        //     m_gyro.enabled = true;
+        // }
+    }
     private void Update()
-        {
+    {
             
         //Input.touch tells us how many fingers are touching the screen.
         if(Input.touchCount == 1)
@@ -70,8 +127,19 @@ public class InputManager : MonoBehaviour {
             Touch firstTouch = touches[0];
             CheckTouch(firstTouch); 
         }
-        
+
+        if(Application.loadedLevelName == "card-finder") 
+        {
+            CheckAccelerometer();
         }
+
+        // Android "BACK" button.
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        
+     }
        // #endif   
     
     private void CheckTouch(Touch touchInfo)
@@ -157,7 +225,7 @@ public class InputManager : MonoBehaviour {
                             {
                                 // Whatever script was found with ISwipeable, call the OnTap() function on it.
                                 swipeScript.OnSwipe(touchInfo.deltaPosition, touchDuration, hitInfo.point);
-                                Debug.Log(touchInfo.deltaPosition.x);
+                                //Debug.Log(touchInfo.deltaPosition.x);
                             }
                         }
                     }
@@ -169,8 +237,43 @@ public class InputManager : MonoBehaviour {
     } // ends CheckTouch()    
     
     private void CheckAccelerometer()
+    {  
+        Vector3 neutralAcceleration =  new Vector3(0.0f, -0.6f, -0.7f);
+        
+        deviceAcceleration = Input.acceleration - neutralAcceleration;
+               
+        Vector3 deltaAcceleration = deviceAcceleration - initialPosition;// = m_gyro.rotationRate;
+        
+        deltaRotation.x = -deviceAcceleration.x;
+        deltaRotation.y = -deviceAcceleration.y;
+        
+        deltaRotation *= Time.deltaTime;
+        transform.Translate(deltaRotation * speed);
+        
+        // Debug.Log("device acceleration" + deviceAcceleration.ToString()); 
+        
+       // Debug.Log(deltaRotation.x.ToString());     
+        
+        //DebugLogger.LogMessage(Input.accelerationEventCount.ToString());
+        for(int i = 0; i < m_acceleratableObjects.Count; ++i)
+        {
+            //DebugLogger.LogMessage("rotation: "+ deltaRotation.ToString());
+            // Send the updated reading to every IAcceleratable.
+
+            // Quaternion version.
+            //m_acceleratableObjects[i].OnAccelerometerUpdate(currentGyroscopeAttitude);
+
+            // Vector3 version.
+            m_acceleratableObjects[i].OnAccelerometerUpdate(deltaRotation);
+        }
+        
+        
+    }
+    
+    private void OnGUI()
     {
-        m_currentAcceleration = Input.acceleration;
+        GUILayout.Label(m_currentAcceleration.ToString());
+        //DebugLogger.LogMessage(m_currentAcceleration.ToString());
     }
     
 // #endif
@@ -179,41 +282,41 @@ public class InputManager : MonoBehaviour {
     /// </summary>
     /// <param name="inputPosition">It's the screen position to check for input and send a message to.</param>
     private void CheckInput(Vector2 inputPosition) 
+    {
+        //convert the mouse position to the world space
+        Ray mouseCursorRay = my_camera.ScreenPointToRay(inputPosition);
+        
+        //declare a RaycastHit object to recieve our results
+        RaycastHit hitInfo;
+        
+        //performs the actual raycast using the ray information and outputting hitInfo
+        if (Physics.Raycast(mouseCursorRay, out hitInfo) == true)
         {
-            //convert the mouse position to the world space
-            Ray mouseCursorRay = my_camera.ScreenPointToRay(inputPosition);
             
-            //declare a RaycastHit object to recieve our results
-            RaycastHit hitInfo;
+            //find out what we hit
+            Collider objectWeHit = hitInfo.collider;
             
-            //performs the actual raycast using the ray information and outputting hitInfo
-            if (Physics.Raycast(mouseCursorRay, out hitInfo) == true)
+            ITappable tappableScript = objectWeHit.GetComponent<ITappable>();
+            if (tappableScript != null)
             {
-                
-                //find out what we hit
-                Collider objectWeHit = hitInfo.collider;
-                
-                ITappable tappableScript = objectWeHit.GetComponent<ITappable>();
-                if (tappableScript != null)
-                {
-                    tappableScript.OnTap(hitInfo.point);
-                    //Debug.Log("tap heard");
-                }
-                
-                
-                
-                //  return objectWeHit.name;
-                // log the name of the object that was touched
-                // Debug.Log(objectWeHit.name);
-                
-                // if-else-ifs to check which object was clicked and act accordingly
-                // use a switch statement for the same thing
-
-                // attach a script to the touchable object and call out to it
-                
-                //calls the function hideCard() on every script on the object if it exists
-                // objectWeHit.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
-                // objectWeHit.SendMessage("AddToPile", SendMessageOptions.DontRequireReceiver);      
+                tappableScript.OnTap(hitInfo.point);
+                //Debug.Log("tap heard");
             }
+            
+            
+            
+            //  return objectWeHit.name;
+            // log the name of the object that was touched
+            // Debug.Log(objectWeHit.name);
+            
+            // if-else-ifs to check which object was clicked and act accordingly
+            // use a switch statement for the same thing
+
+            // attach a script to the touchable object and call out to it
+            
+            //calls the function hideCard() on every script on the object if it exists
+            // objectWeHit.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
+            // objectWeHit.SendMessage("AddToPile", SendMessageOptions.DontRequireReceiver);      
         }
+    }
 }

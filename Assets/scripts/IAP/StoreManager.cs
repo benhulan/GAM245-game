@@ -33,14 +33,14 @@ public class StoreManager : MonoBehaviour
         // Makes sure only one copy of the plugin ever loads.
         if (m_loadedStore != null)
         {
-            DebugLogger.LogMessage("Store was already loaded, aborting load process.");
+           // DebugLogger.LogMessage("Store was already loaded, aborting load process.");
             return;
         }
 
-        DebugLogger.LogMessage("Preparing to load desired plugin.");
+        //DebugLogger.LogMessage("Preparing to load desired plugin.");
 
 #if AMAZON_IAP_V1
-        DebugLogger.LogMessage("Loading Amazon V1 plugin.");
+       // DebugLogger.LogMessage("Loading Amazon V1 plugin.");
         GameObject storeClone = Instantiate(m_amazonStoreV1Prefab);
         m_loadedStore = storeClone.GetComponent<IStore>();
 

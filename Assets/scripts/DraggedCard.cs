@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public class DraggedCard : MonoBehaviour {
 
 
-   public CardManager cm;
-   
-   private Vector3 startPosition;
+    public CardManager cm;
     
-     public void Start()
+    private Vector3 startPosition;
+    
+    public void Start()
     {
         //saves the initial position of the object
        startPosition = this.transform.position;

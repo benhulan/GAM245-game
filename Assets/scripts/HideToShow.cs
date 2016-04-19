@@ -14,7 +14,7 @@ public class HideToShow : MonoBehaviour {
      {
   
              pausedElement = GameObject.FindWithTag("pausedElement");
-             Debug.Log(pausedElement);
+             // Debug.Log(pausedElement); // works!
              pausedElement.gameObject.SetActive(false);
  
 

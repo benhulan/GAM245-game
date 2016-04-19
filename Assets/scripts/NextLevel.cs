@@ -9,7 +9,7 @@ public class NextLevel : MonoBehaviour{
 	public void _NextLevelButton()
 	{
 
-		Debug.Log ("Clicked the button");
+		DebugLogger.LogMessage ("Clicked the button");
 		//loads the level indicated in the variable after clicking on the button
 		SceneManager.LoadScene(sceneToLoad);
 	}

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HideObject : MonoBehaviour {
 
-	public float sec = 3.0f;
+	public float sec = 1f;
      void Start()
      {
          if (this.gameObject.activeInHierarchy)

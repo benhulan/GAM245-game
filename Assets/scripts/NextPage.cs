@@ -9,7 +9,7 @@ public class NextPage : MonoBehaviour
     Vector3 end;
     
     private InputManager im;
-    private RectTransform rt;
+    public RectTransform rt;
     public GameObject Cubo;
     
     public int pageLength = 800; 
@@ -18,27 +18,29 @@ public class NextPage : MonoBehaviour
     {
         rt = GameObject.FindWithTag("page").GetComponent<RectTransform>();
         im = GameObject.Find("inputManager").GetComponent<InputManager>();
-            Cubo = GameObject.Find("Cube");
+        Cubo = GameObject.Find("Cube");
     }
     
-    void Update (){
-         if(isMoving == true)
+    void Update ()
+    {
+        if(isMoving == true)
+        {
+            timer += Time.deltaTime;
+
+            rt.anchoredPosition = Vector3.Lerp(start, end, timer);
+
+            if(timer > 1)
             {
-                timer += Time.deltaTime;
-
-                rt.anchoredPosition = Vector3.Lerp(start, end, timer);
-
-                if(timer > 1)
-                {
-                    isMoving = false;
-                }
-                if(end.x <= -pageLength){
-                    Debug.Log(Cubo);
-                
-                    Cubo.SetActive(false);
-                }
+                isMoving = false;
             }
-    }
+            if(end.x <= -pageLength){
+                Debug.Log(Cubo);
+            
+                Cubo.SetActive(false);
+            }
+        }
+    }             
+
     // Update is called once per frame
    public void _ChangePageleft ()
     {
@@ -64,4 +66,5 @@ public class NextPage : MonoBehaviour
 
       
     }
+  
 }
