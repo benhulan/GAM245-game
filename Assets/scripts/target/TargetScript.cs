@@ -80,28 +80,28 @@ public class TargetScript: MonoBehaviour
             {
                 containsAir = false;
                m_airCard.gameObject.SetActive(false);
-               // hasAir.gameObject.SetActive(false);
+            //    hasAir.gameObject.SetActive(false);
             } 
             
             if(!m_currentlySelectedCards.Contains(m_energyCard))
             {
                 containsEnergy = false;
                m_energyCard.gameObject.SetActive(false);
-               // hasEnergy.gameObject.SetActive(false);
+            //    hasEnergy.gameObject.SetActive(false);
             }
             
             if(!m_currentlySelectedCards.Contains(m_earthCard))
             {
                 containsEarth = false;
                m_earthCard.gameObject.SetActive(false);
-               // hasEarth.gameObject.SetActive(false);
+            //    hasEarth.gameObject.SetActive(false);
             }
             
             if(!m_currentlySelectedCards.Contains(m_fireCard))
             {
                 containsFire = false;
                m_fireCard.gameObject.SetActive(false);
-               // hasFire.gameObject.SetActive(false);
+            //    hasFire.gameObject.SetActive(false);
             } 
             
             //target.gameObject.SetActive(false);
